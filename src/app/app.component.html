@@ -1,0 +1,45 @@
+<form [formGroup]="jsonForm">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <h5>Add Your Details</h5>
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter Name" />
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <input type="number" class="form-control" formControlName="age" placeholder="Enter Age" />
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="address" placeholder="Enter Address" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="spouseFormControl.length > 0" formArrayName="spouse">
+      <h5>Add Spouse Details</h5>
+      <div class="row" *ngFor="let spouse of spouseFormControl.controls; index as i" [formGroupName]="i">
+        <div class="col-6">
+          <div class="form-group">
+            <input type="text" formControlName="name" placeholder="Spouse Name" class="form-control">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <input type="text" formControlName="age" placeholder="Spouse Age" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary btn-sm" (click)="addSpouseField()">Add Spouse</button>
+    </div>
+  </div>
+</form>
+<div class="mt-3">
+  {{jsonForm.value | json}}
+</div>
